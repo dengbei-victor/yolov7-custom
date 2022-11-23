@@ -15,7 +15,7 @@ from utils.plots import plot_one_box
 from utils.torch_utils import select_device, load_classifier, time_synchronized, TracedModel
 
 # 权重
-weights = "yolov7-e6e-custom.pt"
+weights = "last.pt"
 # 图片
 # source = ""
 save_dir = Path("test/output")
@@ -27,8 +27,8 @@ device_digs = ''
 img_size = 1280
 # 是否进行数据增强
 is_augment = True
-conf_thres = 0.5
-iou_thres = 0.45
+conf_thres = 0.6
+iou_thres = 0.3
 agnostic_nms = True
 # 保存置信度在txt文件中
 save_conf = True
@@ -237,5 +237,6 @@ if __name__ == '__main__':
     model = attempt_load(weights, map_location=device)  # load FP32 model
     stride = int(model.stride.max())  # model stride
     imgsz = check_img_size(img_size, s=stride)  # check img_size
-    for name in glob.glob('test/input/*'):
-        detect(source=name)
+    #for name in glob.glob('test/input/*'):
+    #    detect(source=name)
+    detect(source="test/input/HT_VAL_000215_SH_001.jpg")
